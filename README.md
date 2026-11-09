@@ -1,4 +1,4 @@
-# 1530 - Maintenance_Tracker
+# 1530_Maintenance_Tracker
 Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 
 ## Project Description
@@ -10,20 +10,77 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 
 | Layer | Technology | Justification |
 |---|---|---|
-| Language(s) | Python, JavaScript | |
-| Frontend | Next.js | |
-| Backend | Python | |
-| Database | PostgreSQL| |
-| APIs / External Service | FastAPI | |
+| Language(s) | Python, JavaScript | Python will be used for backend functionality while JavaScript will be used for the UI |
+| Frontend | Next.js, React | Next.js Allows us to create reusable components which will be nice if we want to make a different dashboard for tenants and landlords |
+| Backend | Python | Our team has most experience using python.|
+| Database | PostgreSQL, Supabase | We want to host our database so our team can access and see data without having to configure a separate database. |
+| APIs / External Service | FastAPI | FastAPI will allow use to practice making endpoints and will be easy to divide up services for team mebers. |
 
 
 ## Architecture
 
 ### Subsystem Decomposition
+![Subsystem Decomposition](docs/subsystem-decomposition.png)
 
 ### Deployment Diagram
+![Deployment Diagram](docs/deployment-diagram.png)
 
 ### Folder Structure
 
+| Folder | Subsystem | Component | Status |
+|---|---|---|---|
+| `frontend/` | User Interface | Tenant Dashboard, Landlord Dashboard | [Placeholder] |
+| `backend/auth/` | Authentication & Access Control | Login, Unit/Property Access | [Placeholder] |
+| `backend/req_manage/` | Request Management | Requeset Manager, Status Manager| [Placeholder] |
+| `backend/report_data/` | Report Data | Maintenance Request, Report History | [Placeholder] |
+| `backend/notification/` | Notification | New Report Notification, Report Seen Notification | [Placeholder] |
+| `backend/attach_chat/` | Attachments & Report Chat | Photo Attachment, Reqeust Chat | [Placeholder] |
+| `docs/` | N/A | Subsystem-decomposition, deployment-diagram images | N/A |
+
+
+## Prerequisites
+
+* Python
+* Node.js
+* npm
+* Supabase account (PostgreSQL hosted)
+* Git
+
+## Setup and Run
+
+### 1.Clone
+
+```bash
+git clone https://github.com/YifeiTi/1530-Maintenance_Tracker.git
+cd 1530-Maintenance_Tracker
+```
+### 2. Enviromnet Variables
+
+```bash
+cp .env.example .env
+```
+
+### 3. Backend
+
+### 4. Frontend
+
+## How to check That It Works
+
+* Backend
+* Frontend
+* Database
+
+## What Works So Far
+
+## What Does Not Work Yet
+
+## Test On
+| Team member | OS | Result |
+|---|---|---|
+| Edward | | |
+| Dylan | | |
+| Yifei | | |
+| Bakhtiyor | | |
+| Akshay | | |
 
 
