@@ -78,7 +78,7 @@ uvicorn app.main:app --reload
 * Frontend
 * Database
   * The Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. Backend connection is planned for Sprint 5.
-  * 
+ 
 ## What Works So Far
 * FastAPI backend starts and the `/health` endpoint responds.
 * Supabase project is set up with the initial database schema.
