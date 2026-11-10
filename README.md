@@ -31,7 +31,7 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 |---|---|---|---|
 | `frontend/` | User Interface | Tenant Dashboard, Landlord Dashboard | [Placeholder] |
 | `backend/app/auth/` | Authentication & Access Control | Login, Unit/Property Access | [Placeholder] |
-| `backend/app/requests/` | Request Management | Requeset Manager, Status Manager| [Placeholder] |
+| `backend/app/requests/` | Request Management | Request Manager, Status Manager| [Placeholder] |
 | `backend/app/reports/` | Report Data | Maintenance Request, Report History | [Placeholder] |
 | `backend/app/notifications/` | Notification | New Report Notification, Report Seen Notification | [Placeholder] |
 | `backend/app/attachments/` | Attachments & Report Chat | Photo Attachment, Reqeust Chat | [Placeholder] |
@@ -62,11 +62,19 @@ cp .env.example .env
 
 ### 3. Backend
 
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
 ### 4. Frontend
 
 ## How to check That It Works
 
-* Backend
+* Backend:  open http://localhost:8000/health in your browser.
 * Frontend
 * Database
 
