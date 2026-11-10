@@ -40,7 +40,7 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 
 ## Prerequisites
 
-* Python
+* Python 3.12 or higher
 * Node.js
 * npm
 * Supabase account (PostgreSQL hosted)
@@ -72,14 +72,16 @@ uvicorn app.main:app --reload
 
 ### 4. Frontend
 
+
 ## How to check That It Works
 
-* Backend:  open http://localhost:8000/health in your browser.
+* Backend:  open http://localhost:8000/health in your browser. {"status":"ok"}
 * Frontend
 * Database
 
 ## What Works So Far
-
+* FastAPI backend starts and the `/health` endpoint responds.
+  
 ## What Does Not Work Yet
 
 
