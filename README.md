@@ -30,11 +30,11 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 | Folder | Subsystem | Component | Status |
 |---|---|---|---|
 | `frontend/` | User Interface | Tenant Dashboard, Landlord Dashboard | [Placeholder] |
-| `backend/auth/` | Authentication & Access Control | Login, Unit/Property Access | [Placeholder] |
-| `backend/req_manage/` | Request Management | Requeset Manager, Status Manager| [Placeholder] |
-| `backend/report_data/` | Report Data | Maintenance Request, Report History | [Placeholder] |
-| `backend/notification/` | Notification | New Report Notification, Report Seen Notification | [Placeholder] |
-| `backend/attach_chat/` | Attachments & Report Chat | Photo Attachment, Reqeust Chat | [Placeholder] |
+| `backend/app/auth/` | Authentication & Access Control | Login, Unit/Property Access | [Placeholder] |
+| `backend/app/requests/` | Request Management | Requeset Manager, Status Manager| [Placeholder] |
+| `backend/app/reports/` | Report Data | Maintenance Request, Report History | [Placeholder] |
+| `backend/app/notifications/` | Notification | New Report Notification, Report Seen Notification | [Placeholder] |
+| `backend/app/attachments/` | Attachments & Report Chat | Photo Attachment, Reqeust Chat | [Placeholder] |
 | `docs/` | N/A | Subsystem-decomposition, deployment-diagram images | N/A |
 
 
@@ -74,13 +74,5 @@ cp .env.example .env
 
 ## What Does Not Work Yet
 
-## Test On
-| Team member | OS | Result |
-|---|---|---|
-| Edward | | |
-| Dylan | | |
-| Yifei | | |
-| Bakhtiyor | | |
-| Akshay | | |
 
 
