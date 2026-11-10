@@ -43,7 +43,7 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 * Python 3.12 or higher
 * Node.js
 * npm
-* Supabase account (PostgreSQL hosted)
+* Access to the team's Supabase project 
 * Git
 
 ## Setup and Run
@@ -56,9 +56,7 @@ cd 1530-Maintenance_Tracker
 ```
 ### 2. Enviromnet Variables
 
-```bash
-cp .env.example .env
-```
+The backend does not connect to the database yet, so no `.env` values are required to run the skeleton. Database credentials will be added in Sprint 5.
 
 ### 3. Backend
 
@@ -77,12 +75,13 @@ uvicorn app.main:app --reload
 
 * Backend:  open http://localhost:8000/health in your browser. {"status":"ok"}
 * Frontend
-* Database
+* Database: the Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. Backend connection is planned for Sprint 5.
 
 ## What Works So Far
 * FastAPI backend starts and the `/health` endpoint responds.
+* Supabase project is set up with the initial database schema.
   
 ## What Does Not Work Yet
-
+* backend-to-database connection, login, report submission, and notifications (planned for Sprint 5).
 
 
