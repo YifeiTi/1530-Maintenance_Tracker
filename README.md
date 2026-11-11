@@ -29,7 +29,7 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 
 | Folder | Subsystem | Component | Status |
 |---|---|---|---|
-| `frontend/` | User Interface | Tenant Dashboard, Landlord Dashboard | Placeholder |
+| `frontend/` | User Interface | Tenant Dashboard, Landlord Dashboard | Running |
 | `backend/app/auth/` | Authentication & Access Control | Login, Unit/Property Access | Placeholder |
 | `backend/app/requests/` | Request Management | Request Manager, Status Manager | Placeholder |
 | `backend/app/reports/` | Report Data | Maintenance Request, Report History | Placeholder |
@@ -37,12 +37,13 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 | `backend/app/attachments/` | Attachments & Report Chat | Photo Attachment, Request Chat | Placeholder |
 | `docs/` | N/A | Subsystem-decomposition, deployment-diagram images | N/A |
 
+`backend/app/main.py` is the FastAPI entry point (the `/health` endpoint runs). The subsystem folders under `backend/app/` are placeholders for Sprint 5.
 
 ## Prerequisites
 
-* Python 3.12 or higher
-* Node.js
-* npm
+* Python 3.12.4 (tested)
+* Node.js v26.10.0 (tested)
+* npm 11.19.1 (tested)
 * Access to the team's Supabase project
 * Git
 
@@ -70,20 +71,27 @@ uvicorn app.main:app --reload
 
 ### 4. Frontend
 
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## How to Check That It Works
 
 * Backend
   * Open http://localhost:8000/health in your browser. `{"status":"ok"}`
 * Frontend
+  * Open http://localhost:3000 in your browser. You should see the main page of Maintenance Tracker.
 * Database
   * The Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. Backend connection is planned for Sprint 5.
  
 ## What Works So Far
 * FastAPI backend starts and the `/health` endpoint responds.
+* Next.js frontend starts and shows a basic homepage.
 * Supabase project is set up with the initial database schema.
 
 ## What Does Not Work Yet
-* Backend-to-database connection, login, report submission, and notifications (planned for Sprint 5).
+* Frontend-to-backend connection, backend-to-database connection, login, report submission, and notifications (planned for Sprint 5).
 
 
