@@ -57,7 +57,7 @@ cd 1530-Maintenance_Tracker
 ```
 ### 2. Environment Variables
 
-The backend does not connect to the database yet, so no `.env` values are required to run the skeleton. Database credentials will be added in Sprint 5.
+The backend connects to the team's Supabase PostgreSQL database through the DATABASE_URL environment variable. Copy backend/.env.example to backend/.env and replace [YOUR-PASSWORD] with the database password (ask a teammate, or reset it in Supabase under Project Settings, Database). Never commit .env; it is gitignored.
 
 ### 3. Backend
 
@@ -84,7 +84,7 @@ npm run dev
 * Frontend
   * Open http://localhost:3000 in your browser. You should see the main page of Maintenance Tracker.
 * Database
-  * The Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. Backend connection is planned for Sprint 5.
+  * The Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. The backend reads DATABASE_URL from backend/.env; with the backend running, open http://localhost:8000/health/db and you should see {"status":"ok"} if the Supabase connection works (otherwise status is "error" with the exception name).
  
 ## What Works So Far
 * FastAPI backend starts and the `/health` endpoint responds.
