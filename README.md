@@ -34,13 +34,13 @@ Members: Yifei Tian, Bakhtiyor Alimov, Dylan Do, Edward Cho, Akshay Ramkumar
 | ---------------------------- | ------------------------------- | -------------------------------------------------- | ----------- |
 | `frontend/`                  | User Interface                  | Tenant Dashboard, Landlord Dashboard               | Running     |
 | `backend/app/auth/`          | Authentication & Access Control | Login, Unit/Property Access                        | Placeholder |
-| `backend/app/requests/`      | Request Management              | Request Manager, Status Manager                    | Placeholder |
-| `backend/app/reports/`       | Report Data                     | Maintenance Request, Report History                | Placeholder |
+| `backend/app/requests/`      | Request Management              | Request Manager, Status Manager                    | In progress |
+| `backend/app/reports/`       | Report Data                     | Maintenance Request, Report History                | In progress |
 | `backend/app/notifications/` | Notification                    | New Report Notification, Report Seen Notification  | Placeholder |
 | `backend/app/attachments/`   | Attachments & Report Chat       | Photo Attachment, Request Chat                     | Placeholder |
 | `docs/`                      | N/A                             | Subsystem-decomposition, deployment-diagram images | N/A         |
 
-`backend/app/main.py` is the FastAPI entry point (the `/health` endpoint runs). The subsystem folders under `backend/app/` are placeholders for Sprint 5.
+`backend/app/main.py` is the FastAPI entry point. Report endpoints are in `backend/app/requests/routes.py`, and database queries are in `backend/app/reports/store.py`. The other subsystem folders are still placeholders.
 
 ## Prerequisites
 
@@ -62,6 +62,8 @@ cd 1530-Maintenance_Tracker
 ### 2. Environment Variables
 
 The backend connects to the team's Supabase PostgreSQL database through the DATABASE_URL environment variable. Copy backend/.env.example to backend/.env and replace [YOUR-PASSWORD] with the database password (ask a teammate, or reset it in Supabase under Project Settings, Database). Never commit .env; it is gitignored.
+
+If the direct connection fails on your network (IPv6 only), use the Session pooler connection string instead (Supabase: Connect > Session pooler).
 
 ### 3. Backend
 
@@ -90,20 +92,32 @@ npm run dev
 - Database
   - The Supabase project (Maintenance-Tracker) contains the schema tables: properties, units, profiles, maintenance_requests, request_attachments, request_messages. The backend reads DATABASE_URL from backend/.env; with the backend running, open http://localhost:8000/health/db and you should see {"status":"ok"} if the Supabase connection works (otherwise status is "error" with the exception name).
 
+### Tests
+
+```bash
+cd backend
+pytest
+```
+
 ## Features
 
 ### Submit a maintenance report
 
-Send `POST /reports` with `{"description": "sink is leaking", "unit_id": 1}`. A blank description is rejected. A saved report gets status `Submitted` and a submission time set by the server. With the backend running, try it at http://localhost:8000/docs.
+Send `POST /reports` with `{"description": "sink is leaking", "unit_id": <unit uuid>}`. A blank description is rejected. A saved report gets status `Submitted` and a submission time set by the server. With the backend running, try it at http://localhost:8000/docs.
+
+### View active reports
+Send `GET /reports?unit_id=<unit uuid>` to get every active report for a unit (any status except resolved), newest first. Try it at http://localhost:8000/docs under `GET /reports`.
 
 ## What Works So Far
 
 - FastAPI backend starts and the `/health` endpoint responds.
 - `POST /reports` rejects a blank description.
+- `GET /reports` returns a unit's active reports.
 - Next.js frontend starts and shows a basic homepage.
 - Supabase project is set up with the initial database schema.
+- Backend connects to Supabase through the session pooler (/health/db).
 
 ## What Does Not Work Yet
 
 - Frontend-to-backend connection, login, and notifications.
-- Saving a report from this computer until `DATABASE_URL` uses the Supabase session pooler. The direct database host is IPv6-only.
+- Saving a report: `POST /reports` does not match the database schema yet (status values, required title and tenant_id).
