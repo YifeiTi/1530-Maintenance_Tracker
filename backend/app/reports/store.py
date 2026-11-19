@@ -7,8 +7,8 @@ from app.db import engine
 
 def create_report(description: str, unit_id: int):
     cleaned = description.strip()
-    if not cleaned:
-        raise ValueError("Description is required")
+    # if not cleaned:
+    #     raise ValueError("Description is required")
     if engine is None:
         raise RuntimeError("DATABASE_URL is not set. See backend/.env.example")
 
