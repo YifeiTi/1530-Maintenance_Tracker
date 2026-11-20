@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
 from app.db import check_connection
+from app.requests.routes import router as request_router
 
 app = FastAPI()
+app.include_router(request_router)
 
 
 @app.get("/health")
