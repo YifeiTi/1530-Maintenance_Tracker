@@ -103,15 +103,27 @@ pytest
 
 ### Submit a maintenance report
 
-Send `POST /reports` with `{"description": "sink is leaking", "unit_id": <unit uuid>}`. A blank description is rejected. A saved report gets status `Submitted` and a submission time set by the server. With the backend running, try it at http://localhost:8000/docs.
+Send `POST /reports` with `title`, `description`, `unit_id`, and `tenant_id`. Use UUIDs for both IDs. Blank titles and descriptions are rejected. A saved report starts with status `open`, and its `submitted_at` response field comes from the database's `created_at`. With the backend running, try it at http://localhost:8000/docs.
 
 ### View active reports
 Send `GET /reports?unit_id=<unit uuid>` to get every active report for a unit (any status except resolved), newest first. Try it at http://localhost:8000/docs under `GET /reports`.
 
+### Update a report as a landlord
+
+Run this once in the Supabase SQL Editor before using `PATCH /reports/{report_id}`.
+
+```sql
+ALTER TABLE maintenance_requests ADD COLUMN IF NOT EXISTS planned_fix_note text;
+```
+
+Send `X-User-Role: landlord` and a JSON body such as `{"status": "in_progress", "planned_fix_note": "Plumber coming Monday"}`. The allowed status updates are `in_progress` and `resolved`. You can send either field on its own. Leaving the note out or sending `null` keeps the existing note. The response includes the updated report and its new `updated_at` timestamp.
+
+The endpoint returns `403` for other roles or a missing role header, `422` for an invalid status or an empty update, and `404` if the report ID does not exist. The role header is a placeholder until login is implemented.
+
 ## What Works So Far
 
 - FastAPI backend starts and the `/health` endpoint responds.
-- `POST /reports` rejects a blank description.
+- `POST /reports` creates an open maintenance report.
 - `GET /reports` returns a unit's active reports.
 - Next.js frontend starts and shows a basic homepage.
 - Supabase project is set up with the initial database schema.
@@ -120,4 +132,3 @@ Send `GET /reports?unit_id=<unit uuid>` to get every active report for a unit (a
 ## What Does Not Work Yet
 
 - Frontend-to-backend connection, login, and notifications.
-- Saving a report: `POST /reports` does not match the database schema yet (status values, required title and tenant_id).
