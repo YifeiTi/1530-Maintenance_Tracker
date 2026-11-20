@@ -90,3 +90,25 @@ def list_active_reports(unit_id: str):
             .all()
         )
     return [dict(r) for r in rows]
+
+def get_report_by_id(report_id: UUID):
+    if engine is None:
+        raise RuntimeError("DATABASE_URL is not set. See backend/.env.example")
+
+    with engine.connect() as conn:
+        row = (
+            conn.execute(
+                text(
+                    """
+                    SELECT id, unit_id, tenant_id, title, description, status,
+                           planned_fix_note, created_at AS submitted_at, updated_at
+                    FROM maintenance_requests
+                    WHERE id = :report_id
+                    """
+                ),
+                {"report_id": str(report_id)},
+            )
+            .mappings()
+            .one_or_none()
+        )
+    return dict(row) if row else None

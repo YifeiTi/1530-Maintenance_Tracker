@@ -46,3 +46,10 @@ def patch_report(report_id: UUID, body: ReportUpdate, x_user_role: str | None = 
     if report is None:
         raise HTTPException(status_code=404, detail="Report not found")
     return report
+
+@router.get("/reports/{report_id}")
+def read_report(report_id: UUID):
+    report = store.get_report_by_id(report_id)
+    if report is None:
+        raise HTTPException(status_code=404, detail="Report not found")
+    return report
