@@ -79,9 +79,11 @@ uvicorn app.main:app --reload
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
+
+The frontend forwards `/api/reports` requests to FastAPI at `http://127.0.0.1:8000`. Start the backend and frontend in separate terminals. If the backend runs elsewhere, set `API_BASE_URL` before starting/building Next.js (for example, `API_BASE_URL=http://127.0.0.1:8001 npm run dev`). Do not place database credentials in this variable.
 
 ## How to Check That It Works
 
@@ -100,6 +102,14 @@ pytest
 ```
 
 ## Features
+
+### Report screens
+
+At http://localhost:3000, enter an existing test unit UUID and tenant UUID. Select **Load active reports** to list that unit’s active issues. Enter a title and description and select **Submit report**; after a successful API response, the form clears and the active list refreshes. Open a list item to read its latest status, submission date, and planned fix. Blank fields are rejected and failed requests show an error; a failed submission keeps the entered text.
+
+The database uses `open`, `in_progress`, and `resolved`. The UI displays these as Submitted, In progress, and Resolved without changing API/database values. The list endpoint does not return a title, so the list uses the description as its link label.
+
+**Current limit:** manually entered UUIDs are test context, not login. The backend does not yet enforce unit membership, and the landlord role header remains a placeholder. Do not use this prototype with private tenant data. These stories remain partial until US1 is implemented. Chat, attachments, notifications, and status-history preservation are not added by this PR.
 
 ### Submit a maintenance report
 
@@ -125,10 +135,25 @@ The endpoint returns `403` for other roles or a missing role header, `422` for a
 - FastAPI backend starts and the `/health` endpoint responds.
 - `POST /reports` creates an open maintenance report.
 - `GET /reports` returns a unit's active reports.
-- Next.js frontend starts and shows a basic homepage.
+- Next.js frontend submits reports, loads active reports, and opens report details through the existing backend APIs.
 - Supabase project is set up with the initial database schema.
 - Backend connects to Supabase through the session pooler (/health/db).
 
 ## What Does Not Work Yet
 
-- Frontend-to-backend connection, login, and notifications.
+- Login and server-enforced unit/property access, notifications, request chat, attachments, and complete status-history preservation.
+- Landlord updates are available through the API; there is no landlord update form yet.
+
+## Frontend verification
+
+```bash
+cd frontend
+npm test
+npm run build
+```
+
+The frontend tests check status labels, submission timestamps, and API error messages. CI runs them before the frontend build. See `docs/sprint5-frontend-verification.md` for the proxy integration check and its limits.
+
+## GenAI use
+
+Akshay used ChatGPT to scaffold the Sprint 5 report screens, the Next.js API rewrite, frontend tests, and setup/evidence documentation. Affected files: `frontend/app/page.js`, `frontend/app/globals.css`, `frontend/components/ReportDashboard.js`, `frontend/lib/reports.mjs`, `frontend/tests/reports.test.mjs`, `frontend/next.config.mjs`, `frontend/package.json`, `frontend/package-lock.json`, `.github/workflows/ci.yml`, `README.md`, `docs/sprint5-frontend-verification.md`, and `scripts/check_report_proxy.py`. Complete prompts/transcript belong in the sprint appendix. Personal Scrum records, reflection, and retrospective decisions must come from the team.
