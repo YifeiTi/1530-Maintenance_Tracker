@@ -44,3 +44,35 @@ a:focus-visible { outline: 3px solid #245e65; outline-offset: 5px; }
   .site-header { flex-wrap: wrap; }
   main { padding-top: 28px; }
 }
+
+.report-dashboard { display: grid; gap: 24px; }
+.report-panel { background: white; border: 1px solid #d5dee5; border-radius: 10px; padding: 24px; min-width: 0; }
+.report-panel h2 { margin-bottom: 16px; }
+.report-panel p { color: #425666; }
+.report-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.identity-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+label { display: block; font-weight: 700; margin-bottom: 18px; }
+.field-hint { display: block; font-size: 13px; font-weight: 400; margin-top: 4px; }
+input, textarea { display: block; width: 100%; padding: 12px; border: 1px solid #7c8e9c; border-radius: 5px; font: inherit; margin-top: 8px; color: #172b3a; background: white; }
+textarea { resize: vertical; }
+button { border: 0; border-radius: 5px; padding: 12px 18px; background: #245e65; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+button:hover { background: #19474d; }
+button:disabled { opacity: .65; cursor: wait; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid #245e65; outline-offset: 3px; }
+.report-list { list-style: none; padding: 0; margin: 0; }
+.report-list li { border-bottom: 1px solid #d5dee5; padding: 16px 0; }
+.report-list li:first-child { padding-top: 0; }
+.report-list p { margin-bottom: 0; font-size: 14px; }
+.report-link { background: none; padding: 0; text-align: left; color: #245e65; text-decoration: underline; overflow-wrap: anywhere; }
+.report-link:hover { background: none; color: #172b3a; }
+.status-label { font-weight: 700; }
+.report-panel .error-text { color: #a01d27; }
+.report-panel .success-text { color: #245e42; }
+dl { margin-bottom: 0; }
+dt { font-weight: 700; margin-top: 16px; }
+dd { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.report-description { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .report-columns, .identity-fields { grid-template-columns: 1fr; }
+  .report-panel { padding: 20px; }
+}

@@ -22,4 +22,4 @@ jobs:
           node-version: "20"
       - name: Build frontend
         working-directory: frontend
-        run: npm install && npm run build
+        run: npm ci && npm test && npm run build
