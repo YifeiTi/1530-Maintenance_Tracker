@@ -154,6 +154,3 @@ npm run build
 
 The frontend tests check status labels, submission timestamps, and API error messages. CI runs them before the frontend build. See `docs/sprint5-frontend-verification.md` for the proxy integration check and its limits.
 
-## GenAI use
-
-Akshay used ChatGPT to scaffold the Sprint 5 report screens, the Next.js API rewrite, frontend tests, and setup/evidence documentation. Affected files: `frontend/app/page.js`, `frontend/app/globals.css`, `frontend/components/ReportDashboard.js`, `frontend/lib/reports.mjs`, `frontend/tests/reports.test.mjs`, `frontend/next.config.mjs`, `frontend/package.json`, `frontend/package-lock.json`, `.github/workflows/ci.yml`, `README.md`, `docs/sprint5-frontend-verification.md`, and `scripts/check_report_proxy.py`. Complete prompts/transcript belong in the sprint appendix. Personal Scrum records, reflection, and retrospective decisions must come from the team.
