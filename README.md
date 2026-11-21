@@ -154,3 +154,17 @@ npm run build
 
 The frontend tests check status labels, submission timestamps, and API error messages. CI runs them before the frontend build. See `docs/sprint5-frontend-verification.md` for the proxy integration check and its limits.
 
+
+
+## GenAI Usage
+
+Generative AI was used by some team members this sprint for coding, debugging, and writing tests. The tool, purpose, and prompts or transcript for each person are listed below.
+
+| Team member | Tool and purpose | Prompts, transcript, or affected files |
+| --- | --- | --- |
+| Bakhtiyor Alimov | Cursor, to draft POST /reports and the blank-description test. | Write a FastAPI POST /reports endpoint. The body has description and unit_id. Reject a blank description with 400 and the message "Description is required." Insert into maintenance_requests with status Submitted and a server-set submitted_at, and return the new row. Add one pytest that posts a blank description and expects 400, without needing a database connection. |
+| Yifei Tian | ChatGPT was used for coding, debugging, and making a good prompt for Codex for issues that needed resolving. | Codex made a patch endpoint so landlords are able to modify entries of reports' statuses. It also helped debug the Supabase connection and test to see if the connection was working. Transcript: https://chatgpt.com/share/6b0116ea-3ae0-83ea-b5ae-83d4c4524022 |
+| Akshay Ramkumar | Frontend tests and web layout. | Prompts not yet listed. |
+| Edward Cho | Assistance with writing tests for GET /reports only. | To get help create a pytest test for the GET /reports endpoint. |
+
+The prompts above are as originally written. Some were written before POST /reports was fixed to match the Supabase schema, so they mention the old status "Submitted" and a submitted_at column. The database now uses the statuses open, in_progress, and resolved, and the timestamp column is created_at.
